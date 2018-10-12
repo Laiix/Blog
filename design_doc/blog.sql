@@ -1,6 +1,10 @@
+DROP DATABASE IF EXISTS blogdb;
+CREATE DATABASE blogdb DEFAULT CHARACTER SET utf8;
+USE blogdb;
+
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2018/10/13 0:38:57                           */
+/* Created on:     2018/10/13 0:54:25                           */
 /*==============================================================*/
 
 
@@ -25,124 +29,124 @@ drop table if exists t_user_login_log;
 /*==============================================================*/
 create table t_article
 (
-   id                   char(20) not null comment '±êÊ¶',
-   title                char(100) comment '±êÌâ',
-   "desc"               char(500) comment 'ÃèÊö',
-   pic                  char(500) comment 'Í¼Æ¬µØÖ·',
-   content              TEXT comment 'ÄÚÈİ',
-   click                int comment 'µã»÷Á¿',
-   time                 timestamp comment '·¢±íÈÕÆÚ',
-   category_id          char(20) comment 'Àà±ğ',
-   user_id              char(20) comment '×÷Õß',
-   comment_num          int comment 'ÆÀÂÛÊı',
-   is_top               char(1) comment 'ÊÇ·ñÖÃ¶¥',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   title                char(100) comment 'æ ‡é¢˜',
+   description          text comment 'æè¿°',
+   pic                  text comment 'å›¾ç‰‡åœ°å€',
+   content              text comment 'å†…å®¹',
+   click                int comment 'ç‚¹å‡»é‡',
+   time                 timestamp comment 'å‘è¡¨æ—¥æœŸ',
+   category_id          char(20) comment 'ç±»åˆ«',
+   user_id              char(20) comment 'ä½œè€…',
+   comment_num          int comment 'è¯„è®ºæ•°',
+   is_top               char(1) comment 'æ˜¯å¦ç½®é¡¶',
    primary key (id)
 );
 
-alter table t_article comment 'ÎÄÕÂ';
+alter table t_article comment 'æ–‡ç« ';
 
 /*==============================================================*/
 /* Table: t_category                                            */
 /*==============================================================*/
 create table t_category
 (
-   id                   char(20) not null comment '±êÊ¶',
-   name                 char(50) comment 'Àà±ğÃû³Æ',
-   "desc"               char(500) comment 'ÃèÊö',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   name                 char(50) comment 'ç±»åˆ«åç§°',
+   description          text comment 'æè¿°',
    primary key (id)
 );
 
-alter table t_category comment 'ÎÄÕÂ·ÖÀà';
+alter table t_category comment 'æ–‡ç« åˆ†ç±»';
 
 /*==============================================================*/
 /* Table: t_comment                                             */
 /*==============================================================*/
 create table t_comment
 (
-   id                   char(20) not null comment '±êÊ¶',
-   parent_id            char(20) comment '±»»Ö¸´id',
-   article_id           char(20) comment 'ÎÄµµid',
-   content              char(500) comment 'ÄÚÈİ',
-   date                 timestamp comment 'ÈÕÆÚ',
-   user_id              char(20) comment 'ÓÃ»§id',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   parent_id            char(20) comment 'è¢«æ¢å¤id',
+   article_id           char(20) comment 'æ–‡æ¡£id',
+   content              text comment 'å†…å®¹',
+   date                 timestamp comment 'æ—¥æœŸ',
+   user_id              char(20) comment 'ç”¨æˆ·id',
    primary key (id)
 );
 
-alter table t_comment comment 'ÆÀÂÛ';
+alter table t_comment comment 'è¯„è®º';
 
 /*==============================================================*/
 /* Table: t_keyword                                             */
 /*==============================================================*/
 create table t_keyword
 (
-   article_id           char(20) not null comment 'ÎÄÕÂid',
-   keywords             char(20) not null comment '¹Ø¼ü×Ö',
+   article_id           char(20) not null comment 'æ–‡ç« id',
+   keywords             char(20) not null comment 'å…³é”®å­—',
    primary key (article_id, keywords)
 );
 
-alter table t_keyword comment '¹Ø¼ü×Ö';
+alter table t_keyword comment 'å…³é”®å­—';
 
 /*==============================================================*/
 /* Table: t_msg                                                 */
 /*==============================================================*/
 create table t_msg
 (
-   id                   char(20) not null comment '±êÊ¶',
-   parent_id            char(20) comment 'ÁôÑÔ»Ø¸´',
-   user_id              char(20) comment 'ÓÃ»§id',
-   content              char(500) comment 'ÄÚÈİ',
-   date                 timestamp comment 'Ê±¼ä',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   parent_id            char(20) comment 'ç•™è¨€å›å¤',
+   user_id              char(20) comment 'ç”¨æˆ·id',
+   content              text comment 'å†…å®¹',
+   date                 timestamp comment 'æ—¶é—´',
    primary key (id)
 );
 
-alter table t_msg comment 'ÁôÑÔ';
+alter table t_msg comment 'ç•™è¨€';
 
 /*==============================================================*/
 /* Table: t_user                                                */
 /*==============================================================*/
 create table t_user
 (
-   id                   char(20) not null comment '±êÊ¶',
-   username             char(15) comment 'ÓÃ»§Ãû',
-   password             char(15) comment 'ÃÜÂë',
-   slat                 char(5) comment '¼ÓÃÜÑÎ',
-   user_type            char(1) comment 'ÓÃ»§ÀàĞÍ',
-   locked               char(1) comment 'ÊÇ·ñ±»Ëø',
-   last_visit           timestamp comment 'ÉÏ´Î·ÃÎÊÊ±¼ä',
-   last_ip              char(15) comment 'ÉÏ´Î·ÃÎÊip',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   username             char(15) comment 'ç”¨æˆ·å',
+   password             char(15) comment 'å¯†ç ',
+   slat                 char(5) comment 'åŠ å¯†ç›',
+   user_type            char(1) comment 'ç”¨æˆ·ç±»å‹',
+   locked               char(1) comment 'æ˜¯å¦è¢«é”',
+   last_visit           timestamp comment 'ä¸Šæ¬¡è®¿é—®æ—¶é—´',
+   last_ip              char(15) comment 'ä¸Šæ¬¡è®¿é—®ip',
    primary key (id)
 );
 
-alter table t_user comment 'ÓÃ»§±í';
+alter table t_user comment 'ç”¨æˆ·è¡¨';
 
 /*==============================================================*/
 /* Table: t_user_info                                           */
 /*==============================================================*/
 create table t_user_info
 (
-   user_id              char(20) not null comment 'ÓÃ»§id',
-   realname             char(10) comment 'ÕæÊµĞÕÃû',
-   email                char(50) comment 'ÓÊÏä',
-   tel                  char(12) comment 'ÊÖ»ú',
-   introduction         char(150) comment '¸öÈË½éÉÜ',
+   user_id              char(20) not null comment 'ç”¨æˆ·id',
+   realname             char(10) comment 'çœŸå®å§“å',
+   email                char(50) comment 'é‚®ç®±',
+   tel                  char(12) comment 'æ‰‹æœº',
+   introduction         char(150) comment 'ä¸ªäººä»‹ç»',
    primary key (user_id)
 );
 
-alter table t_user_info comment 'ÓÃ»§ÏêÏ¸ĞÅÏ¢';
+alter table t_user_info comment 'ç”¨æˆ·è¯¦ç»†ä¿¡æ¯';
 
 /*==============================================================*/
 /* Table: t_user_login_log                                      */
 /*==============================================================*/
 create table t_user_login_log
 (
-   id                   char(20) not null comment '±êÊ¶',
-   user_id              char(20) comment 'ÓÃ»§id',
-   login_date           timestamp comment 'µÇÂ¼ÈÕÆÚ',
-   login_ip             char(15) comment 'µÇÂ¼ip',
+   id                   char(20) not null comment 'æ ‡è¯†',
+   user_id              char(20) comment 'ç”¨æˆ·id',
+   login_date           timestamp comment 'ç™»å½•æ—¥æœŸ',
+   login_ip             char(15) comment 'ç™»å½•ip',
    primary key (id)
 );
 
-alter table t_user_login_log comment 'ÓÃ»§µÇÂ¼ÈÕÖ¾';
+alter table t_user_login_log comment 'ç”¨æˆ·ç™»å½•æ—¥å¿—';
 
 alter table t_article add constraint FK_fk_article_category foreign key (category_id)
       references t_category (id) on delete restrict on update restrict;
