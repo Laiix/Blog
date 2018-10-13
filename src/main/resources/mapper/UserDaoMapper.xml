@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.eussi.dao.UserDao" >
+    <resultMap id="BaseResultMap" type="User" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="salt" property="salt" jdbcType="VARCHAR" />
+        <result column="user_type" property="userType" jdbcType="VARCHAR" />
+        <result column="locked" property="locked" jdbcType="VARCHAR" />
+        <result column="last_visit" property="lastVisit" jdbcType="TIMESTAMP" />
+        <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id,
+        username,
+        password,
+        salt,
+        user_type,
+        locked,
+        last_visit,
+        last_ip
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_user
+    </select>
+
+    <insert id="add" parameterType="User" >
+        insert into t_user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="salt != null" >
+                salt,
+            </if>
+            <if test="userType != null" >
+                user_type,
+            </if>
+            <if test="locked != null" >
+                locked,
+            </if>
+            <if test="lastVisit != null" >
+                last_visit,
+            </if>
+            <if test="lastIp != null" >
+                last_ip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null" >
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null" >
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="locked != null" >
+                #{locked,jdbcType=VARCHAR},
+            </if>
+            <if test="lastVisit != null" >
+                #{lastVisit,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastIp != null" >
+                #{lastIp,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="java.io.Serializable" >
+        delete from t_user
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="update" parameterType="User" >
+        update t_user
+        <set >
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null" >
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null" >
+                user_type = #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="locked != null" >
+                locked = #{locked,jdbcType=VARCHAR},
+            </if>
+            <if test="lastVisit != null" >
+                last_visit = #{lastVisit,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastIp != null" >
+                last_ip = #{lastIp,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+</mapper>

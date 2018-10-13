@@ -2,9 +2,10 @@ DROP DATABASE IF EXISTS blogdb;
 CREATE DATABASE blogdb DEFAULT CHARACTER SET utf8;
 USE blogdb;
 
+
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2018/10/13 0:54:25                           */
+/* Created on:     2018/10/13 13:30:27                          */
 /*==============================================================*/
 
 
@@ -29,124 +30,124 @@ drop table if exists t_user_login_log;
 /*==============================================================*/
 create table t_article
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   title                char(100) comment 'æ ‡é¢˜',
-   description          text comment 'æè¿°',
-   pic                  text comment 'å›¾ç‰‡åœ°å€',
-   content              text comment 'å†…å®¹',
-   click                int comment 'ç‚¹å‡»é‡',
-   time                 timestamp comment 'å‘è¡¨æ—¥æœŸ',
-   category_id          char(20) comment 'ç±»åˆ«',
-   user_id              char(20) comment 'ä½œè€…',
-   comment_num          int comment 'è¯„è®ºæ•°',
-   is_top               char(1) comment 'æ˜¯å¦ç½®é¡¶',
+   id                   varchar(20) not null comment '±êÊ¶',
+   title                varchar(100) comment '±êÌâ',
+   description          text comment 'ÃèÊö',
+   pic                  text comment 'Í¼Æ¬µØÖ·',
+   content              text comment 'ÄÚÈİ',
+   click                int comment 'µã»÷Á¿',
+   time                 timestamp comment '·¢±íÈÕÆÚ',
+   category_id          varchar(20) comment 'Àà±ğ',
+   user_id              varchar(20) comment '×÷Õß',
+   comment_num          int comment 'ÆÀÂÛÊı',
+   is_top               varchar(1) comment 'ÊÇ·ñÖÃ¶¥',
    primary key (id)
 );
 
-alter table t_article comment 'æ–‡ç« ';
+alter table t_article comment 'ÎÄÕÂ';
 
 /*==============================================================*/
 /* Table: t_category                                            */
 /*==============================================================*/
 create table t_category
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   name                 char(50) comment 'ç±»åˆ«åç§°',
-   description          text comment 'æè¿°',
+   id                   varchar(20) not null comment '±êÊ¶',
+   name                 varchar(50) comment 'Àà±ğÃû³Æ',
+   description          text comment 'ÃèÊö',
    primary key (id)
 );
 
-alter table t_category comment 'æ–‡ç« åˆ†ç±»';
+alter table t_category comment 'ÎÄÕÂ·ÖÀà';
 
 /*==============================================================*/
 /* Table: t_comment                                             */
 /*==============================================================*/
 create table t_comment
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   parent_id            char(20) comment 'è¢«æ¢å¤id',
-   article_id           char(20) comment 'æ–‡æ¡£id',
-   content              text comment 'å†…å®¹',
-   date                 timestamp comment 'æ—¥æœŸ',
-   user_id              char(20) comment 'ç”¨æˆ·id',
+   id                   varchar(20) not null comment '±êÊ¶',
+   parent_id            varchar(20) comment '±»»Ö¸´id',
+   article_id           varchar(20) comment 'ÎÄµµid',
+   content              text comment 'ÄÚÈİ',
+   date                 timestamp comment 'ÈÕÆÚ',
+   user_id              varchar(20) comment 'ÓÃ»§id',
    primary key (id)
 );
 
-alter table t_comment comment 'è¯„è®º';
+alter table t_comment comment 'ÆÀÂÛ';
 
 /*==============================================================*/
 /* Table: t_keyword                                             */
 /*==============================================================*/
 create table t_keyword
 (
-   article_id           char(20) not null comment 'æ–‡ç« id',
-   keywords             char(20) not null comment 'å…³é”®å­—',
+   article_id           varchar(20) not null comment 'ÎÄÕÂid',
+   keywords             varchar(20) not null comment '¹Ø¼ü×Ö',
    primary key (article_id, keywords)
 );
 
-alter table t_keyword comment 'å…³é”®å­—';
+alter table t_keyword comment '¹Ø¼ü×Ö';
 
 /*==============================================================*/
 /* Table: t_msg                                                 */
 /*==============================================================*/
 create table t_msg
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   parent_id            char(20) comment 'ç•™è¨€å›å¤',
-   user_id              char(20) comment 'ç”¨æˆ·id',
-   content              text comment 'å†…å®¹',
-   date                 timestamp comment 'æ—¶é—´',
+   id                   varchar(20) not null comment '±êÊ¶',
+   parent_id            varchar(20) comment 'ÁôÑÔ»Ø¸´',
+   user_id              varchar(20) comment 'ÓÃ»§id',
+   content              text comment 'ÄÚÈİ',
+   date                 timestamp comment 'Ê±¼ä',
    primary key (id)
 );
 
-alter table t_msg comment 'ç•™è¨€';
+alter table t_msg comment 'ÁôÑÔ';
 
 /*==============================================================*/
 /* Table: t_user                                                */
 /*==============================================================*/
 create table t_user
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   username             char(15) comment 'ç”¨æˆ·å',
-   password             char(15) comment 'å¯†ç ',
-   slat                 char(5) comment 'åŠ å¯†ç›',
-   user_type            char(1) comment 'ç”¨æˆ·ç±»å‹',
-   locked               char(1) comment 'æ˜¯å¦è¢«é”',
-   last_visit           timestamp comment 'ä¸Šæ¬¡è®¿é—®æ—¶é—´',
-   last_ip              char(15) comment 'ä¸Šæ¬¡è®¿é—®ip',
+   id                   varchar(20) not null comment '±êÊ¶',
+   username             varchar(15) comment 'ÓÃ»§Ãû',
+   password             varchar(15) comment 'ÃÜÂë',
+   salt                 varchar(5) comment '¼ÓÃÜÑÎ',
+   user_type            varchar(1) comment 'ÓÃ»§ÀàĞÍ',
+   locked               varchar(1) comment 'ÊÇ·ñ±»Ëø',
+   last_visit           timestamp comment 'ÉÏ´Î·ÃÎÊÊ±¼ä',
+   last_ip              varchar(15) comment 'ÉÏ´Î·ÃÎÊip',
    primary key (id)
 );
 
-alter table t_user comment 'ç”¨æˆ·è¡¨';
+alter table t_user comment 'ÓÃ»§±í';
 
 /*==============================================================*/
 /* Table: t_user_info                                           */
 /*==============================================================*/
 create table t_user_info
 (
-   user_id              char(20) not null comment 'ç”¨æˆ·id',
-   realname             char(10) comment 'çœŸå®å§“å',
-   email                char(50) comment 'é‚®ç®±',
-   tel                  char(12) comment 'æ‰‹æœº',
-   introduction         char(150) comment 'ä¸ªäººä»‹ç»',
+   user_id              varchar(20) not null comment 'ÓÃ»§id',
+   realname             varchar(10) comment 'ÕæÊµĞÕÃû',
+   email                varchar(50) comment 'ÓÊÏä',
+   tel                  varchar(12) comment 'ÊÖ»ú',
+   introduction         varchar(150) comment '¸öÈË½éÉÜ',
    primary key (user_id)
 );
 
-alter table t_user_info comment 'ç”¨æˆ·è¯¦ç»†ä¿¡æ¯';
+alter table t_user_info comment 'ÓÃ»§ÏêÏ¸ĞÅÏ¢';
 
 /*==============================================================*/
 /* Table: t_user_login_log                                      */
 /*==============================================================*/
 create table t_user_login_log
 (
-   id                   char(20) not null comment 'æ ‡è¯†',
-   user_id              char(20) comment 'ç”¨æˆ·id',
-   login_date           timestamp comment 'ç™»å½•æ—¥æœŸ',
-   login_ip             char(15) comment 'ç™»å½•ip',
+   id                   varchar(20) not null comment '±êÊ¶',
+   user_id              varchar(20) comment 'ÓÃ»§id',
+   login_date           timestamp comment 'µÇÂ¼ÈÕÆÚ',
+   login_ip             varchar(15) comment 'µÇÂ¼ip',
    primary key (id)
 );
 
-alter table t_user_login_log comment 'ç”¨æˆ·ç™»å½•æ—¥å¿—';
+alter table t_user_login_log comment 'ÓÃ»§µÇÂ¼ÈÕÖ¾';
 
 alter table t_article add constraint FK_fk_article_category foreign key (category_id)
       references t_category (id) on delete restrict on update restrict;
