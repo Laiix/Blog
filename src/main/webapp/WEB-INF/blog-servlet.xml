@@ -13,6 +13,7 @@
     <!-- 自动扫描top.eussi.web.controller 包下的@Controller标注的类控制器类 -->
     <context:component-scan base-package="top.eussi.web.controller"/>
 
+
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
