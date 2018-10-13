@@ -10,6 +10,13 @@
         <result column="locked" property="locked" jdbcType="VARCHAR" />
         <result column="last_visit" property="lastVisit" jdbcType="TIMESTAMP" />
         <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+        <association column="user_id" property="userInfo" javaType="UserInfo">
+            <id column="user_id" property="userId" jdbcType="VARCHAR" />
+            <result column="realname" property="realname" jdbcType="VARCHAR" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="tel" property="tel" jdbcType="VARCHAR" />
+            <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -25,9 +32,12 @@
 
     <select id="get" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
         select
-        <include refid="Base_Column_List" />
-        from t_user
-        where id = #{id,jdbcType=VARCHAR}
+        *
+        from
+        t_user a left join t_user_info b
+        on
+        a.id=b.user_id
+        and a.id = #{id,jdbcType=VARCHAR}
     </select>
 
     <select id="getAll" resultMap="BaseResultMap">

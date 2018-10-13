@@ -5,7 +5,7 @@ USE blogdb;
 
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2018/10/13 13:30:27                          */
+/* Created on:     2018/10/13 17:59:23                          */
 /*==============================================================*/
 
 
@@ -38,7 +38,7 @@ create table t_article
    click                int comment '点击量',
    time                 timestamp comment '发表日期',
    category_id          varchar(20) comment '类别',
-   user_id              varchar(20) comment '作者',
+   username             varchar(15) comment '作者用户名',
    comment_num          int comment '评论数',
    is_top               varchar(1) comment '是否置顶',
    primary key (id)
@@ -126,7 +126,7 @@ alter table t_user comment '用户表';
 create table t_user_info
 (
    user_id              varchar(20) not null comment '用户id',
-   realname             varchar(10) comment '真实姓名',
+   realname             varchar(15) comment '真实姓名',
    email                varchar(50) comment '邮箱',
    tel                  varchar(12) comment '手机',
    introduction         varchar(150) comment '个人介绍',
@@ -152,8 +152,8 @@ alter table t_user_login_log comment '用户登录日志';
 alter table t_article add constraint FK_fk_article_category foreign key (category_id)
       references t_category (id) on delete restrict on update restrict;
 
-alter table t_article add constraint FK_fk_article_user foreign key (user_id)
-      references t_user (id) on delete restrict on update restrict;
+alter table t_article add constraint FK_fk_article_user foreign key (username)
+      references t_user (username) on delete restrict on update restrict;
 
 alter table t_comment add constraint FK_fk_comment_article foreign key (article_id)
       references t_article (id) on delete restrict on update restrict;
@@ -178,4 +178,10 @@ alter table t_user_info add constraint FK_fk_userinfo_user foreign key (user_id)
 
 alter table t_user_login_log add constraint FK_fk_user_userlogin foreign key (user_id)
       references t_user (id) on delete restrict on update restrict;
+
+-- ----------------------------
+--  Records 
+-- ----------------------------
+INSERT INTO `t_user` VALUES ('1','wangxm','1234','2','2','1','2018-10-13 16:09:15','0.0.0.0');
+INSERT INTO `t_user_info` VALUES ('1','wangxueming','g@mail.com','343432','介绍');
 

@@ -5,27 +5,27 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import top.eussi.domain.Article;
 import top.eussi.domain.User;
 
 /**
  * Created by wangxueming on 2018/10/13.
  */
 @ContextConfiguration("classpath*:/spring_conf/blog-dao.xml")
-public class UserDaoTest extends AbstractTransactionalTestNGSpringContextTests{
+public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTests{
 
     @Autowired
-    private UserDao userDao;
+    private ArticleDao articleDao;
 
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
+    public void setArticleDao(ArticleDao articleDao) {
+        this.articleDao = articleDao;
     }
 
     @Test
-    public void getUser() {
+    public void getArticle() {
         String id = "1";
-        User user = userDao.get(id);
-        System.out.println(user.toString());
-        Assert.assertEquals(user.getUsername(), "wangxm");
-        Assert.assertEquals(user.getUserInfo().getRealname(), "wangxueming");
+        Article article = articleDao.getAll().get(0);
+        System.out.println(article.toString());
+        Assert.assertEquals(article.getTitle(), "test");
     }
 }

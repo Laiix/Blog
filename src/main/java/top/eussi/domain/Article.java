@@ -33,9 +33,7 @@ public class Article extends BaseDomain {
 
     private String categoryId;
 
-    private String userId;
-
-    private String loginIp;
+    private String username;
 
     private Long commentNum;
 
@@ -107,20 +105,12 @@ public class Article extends BaseDomain {
         this.categoryId = categoryId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getLoginIp() {
-        return loginIp;
-    }
-
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getCommentNum() {
