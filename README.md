@@ -15,11 +15,17 @@ A personal blog project
     - 访问不加项目名，记得$TOMCAT_HOME/conf/server.xml文件的Host节点下增加<Context path="" docBase="Blog" debug="0" reloadable="true"/>
     - 访问地址:http:xxx.xxx.xxx.xxx:xx
 
+##### 项目部署地址：
+
+ - http://www.eussi.top/
+
 ##### 项目构建:Maven
 
 ##### jdk:1.8.0_91
 
+#### 技术架构：
+![image](https://github.com/eussi/Blog/blob/master/design_doc/Technical framework.png)
 #### 数据库物理模型：
 ![image](https://github.com/eussi/Blog/blob/master/design_doc/physicaldiagram.png)
 #### 访问首页如图：
-![image](https://github.com/eussi/Blog/blob/master/design_doc/pre-index.png)
+![image](https://github.com/eussi/Blog/blob/master/design_doc/pre-index.jpg)
