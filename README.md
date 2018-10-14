@@ -24,7 +24,7 @@ A personal blog project
 ##### jdk:1.8.0_91
 
 #### 技术架构：
-![image](https://github.com/eussi/Blog/blob/master/design_doc/Technical framework.png)
+![image](https://github.com/eussi/Blog/blob/master/design_doc/Technical-framework.png)
 #### 数据库物理模型：
 ![image](https://github.com/eussi/Blog/blob/master/design_doc/physicaldiagram.png)
 #### 访问首页如图：
