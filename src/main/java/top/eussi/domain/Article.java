@@ -29,7 +29,9 @@ public class Article extends BaseDomain {
 
     private Long click;
 
-    private Timestamp time;
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
 
     private String categoryId;
 
@@ -91,12 +93,20 @@ public class Article extends BaseDomain {
         this.click = click;
     }
 
-    public Timestamp getTime() {
-        return time;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(Timestamp time) {
-        this.time = time;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getCategoryId() {

@@ -27,8 +27,8 @@ public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTest
     public void getAllArticle() {
         List<Article> articles = articleDao.getAll();
         System.out.println(articles.size());
-        Assert.assertEquals(articles.size(), 1);
-        Article article = articles.get(0);
+        Assert.assertEquals(articles.size(), 2);
+        Article article = articles.get(1);
         System.out.println(article.toString());
         Assert.assertNotNull(article.getTitle());
     }

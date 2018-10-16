@@ -12,7 +12,7 @@ public class UserLoginLog extends BaseDomain {
 
 	private String userId;
 
-    private Timestamp loginDate;
+    private Timestamp loginTime;
 
     private String loginIp;
 
@@ -32,12 +32,12 @@ public class UserLoginLog extends BaseDomain {
         this.userId = userId;
     }
 
-    public Timestamp getLoginDate() {
-        return loginDate;
+    public Timestamp getLoginTime() {
+        return loginTime;
     }
 
-    public void setLoginDate(Timestamp loginDate) {
-        this.loginDate = loginDate;
+    public void setLoginTime(Timestamp loginTime) {
+        this.loginTime = loginTime;
     }
 
     public String getLoginIp() {

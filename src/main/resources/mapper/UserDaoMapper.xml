@@ -10,6 +10,8 @@
         <result column="locked" property="locked" jdbcType="VARCHAR" />
         <result column="last_visit" property="lastVisit" jdbcType="TIMESTAMP" />
         <result column="last_ip" property="lastIp" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <association column="user_id" property="userInfo" javaType="UserInfo">
             <id column="user_id" property="userId" jdbcType="VARCHAR" />
             <result column="realname" property="realname" jdbcType="VARCHAR" />
@@ -27,7 +29,9 @@
         user_type,
         locked,
         last_visit,
-        last_ip
+        last_ip,
+        create_time,
+        update_time
     </sql>
 
     <select id="get" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
@@ -73,6 +77,12 @@
             <if test="lastIp != null" >
                 last_ip,
             </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -98,6 +108,12 @@
             </if>
             <if test="lastIp != null" >
                 #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -130,6 +146,12 @@
             </if>
             <if test="lastIp != null" >
                 last_ip = #{lastIp,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=VARCHAR}

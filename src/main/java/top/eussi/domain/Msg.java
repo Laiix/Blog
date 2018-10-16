@@ -18,7 +18,9 @@ public class Msg extends BaseDomain {
 
     private String content;
 
-    private Timestamp date;
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
 
     //存放回复信息
     private List<Msg> msgs = new ArrayList<Msg>();
@@ -55,11 +57,27 @@ public class Msg extends BaseDomain {
         this.content = content;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public List<Msg> getMsgs() {
+        return msgs;
+    }
+
+    public void setMsgs(List<Msg> msgs) {
+        this.msgs = msgs;
     }
 }

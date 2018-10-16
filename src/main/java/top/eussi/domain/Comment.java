@@ -18,7 +18,9 @@ public class Comment extends BaseDomain {
 
     private String content;
 
-    private Timestamp date;
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
 
     private String userId;
 
@@ -57,12 +59,20 @@ public class Comment extends BaseDomain {
         this.content = content;
     }
 
-    public Timestamp getDate() {
-        return date;
+    public Timestamp getCreateTime() {
+        return createTime;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getUserId() {

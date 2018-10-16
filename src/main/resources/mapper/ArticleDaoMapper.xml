@@ -8,7 +8,8 @@
         <result column="pic" property="pic" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="click" property="click" jdbcType="INTEGER" />
-        <result column="time" property="time" jdbcType="TIMESTAMP" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
         <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
@@ -30,7 +31,8 @@
         a.description a_description,
         pic,
         click,
-        time,
+        create_time,
+        update_time,
         category_id,
         username,
         comment_num,
@@ -49,7 +51,8 @@
         pic,
         content,
         click,
-        time,
+        create_time,
+        update_time,
         category_id,
         username,
         comment_num,

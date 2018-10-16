@@ -46,7 +46,7 @@
         <div id="container">
             <c:forEach items="${articles}" var="article">
                 <article class="article">
-                    <time>${article.time}</time>
+                    <time>${article.createTime}</time>
                     <h2 class="title"><a href="/">${article.title}</a></h2>
                     <span><i>${article.username}</i></span>
                     <div>

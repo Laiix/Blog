@@ -41,6 +41,10 @@ public class User extends BaseDomain {
 
 	private String lastIp;
 
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
+
     private UserInfo userInfo;
 
     public String getId() {
@@ -104,6 +108,22 @@ public class User extends BaseDomain {
 
     public void setLastIp(String lastIp) {
         this.lastIp = lastIp;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
     }
 
     public UserInfo getUserInfo() {
