@@ -20,7 +20,6 @@
         title,
         description,
         pic,
-        content,
         click,
         time,
         category_id,
