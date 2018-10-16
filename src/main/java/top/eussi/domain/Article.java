@@ -39,6 +39,8 @@ public class Article extends BaseDomain {
 
     private String isTop = ARTICLE_UNTOP;
 
+    private Category category;
+
     private List<Keyword> keywords = new ArrayList<Keyword>();
 
     public String getId() {
@@ -135,5 +137,13 @@ public class Article extends BaseDomain {
 
     public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
