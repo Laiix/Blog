@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 import top.eussi.domain.Article;
 import top.eussi.domain.User;
 
+import java.util.List;
+
 /**
  * Created by wangxueming on 2018/10/13.
  */
@@ -22,10 +24,20 @@ public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTest
     }
 
     @Test
+    public void getAllArticle() {
+        List<Article> articles = articleDao.getAll();
+        System.out.println(articles.size());
+        Assert.assertEquals(articles.size(), 1);
+        Article article = articles.get(0);
+        System.out.println(article.toString());
+        Assert.assertNotNull(article.getTitle());
+    }
+
+    @Test
     public void getArticle() {
         String id = "1";
-        Article article = articleDao.getAll().get(0);
-        System.out.println(article.toString());
-        Assert.assertEquals(article.getTitle(), "test");
+        Article article = articleDao.getArticle(id);
+        System.out.println(article.getContent());
+        Assert.assertNotNull(article.getContent());
     }
 }

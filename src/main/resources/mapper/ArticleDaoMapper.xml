@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="top.eussi.dao.ArticleDao" >
     <resultMap id="BaseResultMap" type="Article" >
-        <id column="id" property="id" jdbcType="VARCHAR" />
+        <id column="a_id" property="id" jdbcType="VARCHAR" />
         <result column="title" property="title" jdbcType="VARCHAR" />
-        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="a_description" property="description" jdbcType="VARCHAR" />
         <result column="pic" property="pic" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="click" property="click" jdbcType="INTEGER" />
@@ -13,25 +13,69 @@
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
         <result column="is_top" property="isTop" jdbcType="VARCHAR" />
+        <association column="category_id" property="category" javaType="Category">
+            <id column="b_id" property="id" jdbcType="VARCHAR" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="b_description" property="description" jdbcType="VARCHAR" />
+        </association>
+        <collection property="keywords" ofType="Keyword">
+            <id column="article_id" property="articleId" jdbcType="VARCHAR" />
+            <id column="keywords" property="keywords" jdbcType="VARCHAR" />
+        </collection>
     </resultMap>
 
-    <sql id="Base_Column_List" >
-        id,
+    <sql id="Index_Show_Article" >
+        a.id a_id,
         title,
-        description,
+        a.description a_description,
         pic,
         click,
         time,
         category_id,
         username,
         comment_num,
-        is_top
+        is_top,
+        b.id b_id,
+        name,
+        b.description b_description,
+        article_id,
+        keywords
+    </sql>
+
+    <sql id="Base_All_Column_List" >
+        a.id a_id,
+        title,
+        a.description a_description,
+        pic,
+        content,
+        click,
+        time,
+        category_id,
+        username,
+        comment_num,
+        is_top,
+        b.id b_id,
+        name,
+        b.description b_description,
+        article_id,
+        keywords
     </sql>
 
     <select id="getAll" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from t_article
+        <include refid="Index_Show_Article" />
+        from t_article a
+        left join t_category b on a.category_id = b.id
+        left join t_keyword c on a.id = c.article_id
+    </select>
+
+    <select id="getArticle" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
+        select
+        <include refid="Base_All_Column_List" />
+        from t_article a
+        left join t_category b on a.category_id = b.id
+        left join t_keyword c on a.id = c.article_id
+        where  a.id = #{id,jdbcType=VARCHAR}
     </select>
 
 </mapper>

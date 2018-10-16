@@ -123,6 +123,7 @@ body {
     max-width: 75%;
     background: #fff;
     text-align: center;
+    color: #777;
 }
 /*时间框设置*/
 .article>time {
@@ -135,13 +136,13 @@ body {
     color: #999;
 }
 .article>h2 {
-    padding: 35px 0 45px;
+    padding: 35px 0 10px;
     font-size: 22px;
     font-weight: 700;
     cursor: pointer;
     line-height: 1.225;
 }
-.article>span {
+.article>span i{
     position: absolute;
     top: 0;
     right: 0;
@@ -157,11 +158,23 @@ body {
 }
 .article blockquote {
     padding: 0 15px;
-    color: #777;
     border-left: 4px solid #ddd;
 }
+.article div span{
+    border: 1px solid #ddd;
+    font-size: 8px;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.article section span{
+    border: 1px solid #ddd;
+    font-size: 12px;
+    padding: 3px;
+    border-radius: 4px;
+}
 .article footer {
-    padding: 25px 0 20px;
+    padding: 10px 0 20px;
 }
 .article footer a {
     display: inline-block;

@@ -49,10 +49,18 @@
                     <time>${article.time}</time>
                     <h2 class="title"><a href="/">${article.title}</a></h2>
                     <span><i>${article.username}</i></span>
+                    <div>
+                        <span>分类: ${article.category.name}</span>
+                        <span>点击量: ${article.click}</span>
+                        <span>评论数: ${article.commentNum}</span>
+                    </div>
                     <section class="article-content markdown-body">
                         <blockquote>
                             <p>${article.description}</p>
                         </blockquote>
+                        <c:forEach items="${article.keywords}" var="keyword">
+                            <span>${keyword.keywords}</span>
+                        </c:forEach>
                     </section>
                     <footer>
                         <a href="/">阅读全文</a>
