@@ -11,5 +11,4 @@ import java.util.Map;
  */
 @Repository
 public interface ArticleDao extends BaseDao<Article> {
-    public Article getArticle(Serializable id);
 }

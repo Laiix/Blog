@@ -40,7 +40,7 @@ public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTest
     @Test
     public void getArticle() {
         String id = "1";
-        Article article = articleDao.getArticle(id);
+        Article article = articleDao.get(id);
         System.out.println(article.getContent());
         Assert.assertNotNull(article.getContent());
     }

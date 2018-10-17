@@ -12,6 +12,7 @@ import top.eussi.domain.Keyword;
 import top.eussi.domain.Page;
 import top.eussi.service.ArticleService;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +65,22 @@ public class ArticleServiceImpl implements ArticleService{
         }
 
         return page;
+    }
+
+    @Override
+    public Article get(Serializable id) {
+        Article article = articleDao.get(id);
+
+        //增加一次点击量
+//        long clickNum=article.getClick();
+//        article.setClick(clickNum+1);
+//        articleDao.update(article);
+
+        return article;
+    }
+
+    @Override
+    public void update(Article article) {
+        articleDao.update(article);
     }
 }

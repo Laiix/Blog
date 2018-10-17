@@ -104,7 +104,7 @@
         keywords
     </sql>
 
-    <select id="getArticle" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
+    <select id="get" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
         select
         <include refid="Base_Column_Article" />
         from t_article a
