@@ -1,10 +1,11 @@
 package top.eussi.dao;
 
 
-import top.eussi.dao.domain.Page;
+import top.eussi.domain.Page;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DAO基类，其它DAO可以直接继承这个DAO
@@ -46,5 +47,13 @@ public interface BaseDao<T> {
 	 * @param entity
 	 */
 	public void update(T entity);
+
+    /**
+     * 分页查询函数
+     *
+     * @param parameters
+     * 参数通过map传递，需要参数 startIndex pageSize 以及 需要查询的参数
+     */
+    public Page<T> pagedQuery(Map<String, Object> parameters);
 
 }

@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="top.eussi.dao.ArticleDao" >
+    <!-- 分页查询 -->
+    <resultMap id="LightResultMap" type="Article" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="pic" property="pic" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="click" property="click" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+        <result column="is_top" property="isTop" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap type="Page" id="PageResultMap">
+        <id column="startIndex" property="startIndex"/>
+        <id column="pageSize" property="pageSize"/>
+        <id column="totalCount" property="totalCount"/>
+        <id column="totalPage" property="totalPage"/>
+        <collection column="{START_INDEX=startIndex,PAGE_SIZE=pageSize}" property="data" ofType="Article" select="getPageArticle"/>
+    </resultMap>
+
+    <sql id="Page_Column_Article" >
+        id,
+        title,
+        description,
+        pic,
+        click,
+        create_time,
+        update_time,
+        category_id,
+        username,
+        comment_num,
+        is_top
+    </sql>
+
+    <select id="getPageArticle" resultMap="LightResultMap" parameterType="hashmap" >
+        select
+        <include refid="Page_Column_Article" />
+        from t_article
+        ORDER BY create_time DESC
+        limit #{START_INDEX}, #{PAGE_SIZE}
+    </select>
+
+    <!-- #是采用占用符, $是直接取到值 -->
+    <select id="pagedQuery" parameterType="hashmap" resultMap="PageResultMap">
+        select
+        count(1) totalCount,
+        ceil(count(1)/${PAGE_SIZE}) totalPage,
+        ${START_INDEX} startIndex,
+        ${PAGE_SIZE} pageSize
+        from t_article
+    </select>
+
+
+
+    <!-- 查询文章的全部信息 -->
     <resultMap id="BaseResultMap" type="Article" >
         <id column="a_id" property="id" jdbcType="VARCHAR" />
         <result column="title" property="title" jdbcType="VARCHAR" />
@@ -25,26 +84,7 @@
         </collection>
     </resultMap>
 
-    <sql id="Index_Show_Article" >
-        a.id a_id,
-        title,
-        a.description a_description,
-        pic,
-        click,
-        create_time,
-        update_time,
-        category_id,
-        username,
-        comment_num,
-        is_top,
-        b.id b_id,
-        name,
-        b.description b_description,
-        article_id,
-        keywords
-    </sql>
-
-    <sql id="Base_All_Column_List" >
+    <sql id="Base_Column_Article" >
         a.id a_id,
         title,
         a.description a_description,
@@ -64,21 +104,12 @@
         keywords
     </sql>
 
-    <select id="getAll" resultMap="BaseResultMap">
-        select
-        <include refid="Index_Show_Article" />
-        from t_article a
-        left join t_category b on a.category_id = b.id
-        left join t_keyword c on a.id = c.article_id
-    </select>
-
     <select id="getArticle" resultMap="BaseResultMap" parameterType="java.io.Serializable" >
         select
-        <include refid="Base_All_Column_List" />
+        <include refid="Base_Column_Article" />
         from t_article a
         left join t_category b on a.category_id = b.id
         left join t_keyword c on a.id = c.article_id
         where  a.id = #{id,jdbcType=VARCHAR}
     </select>
-
 </mapper>

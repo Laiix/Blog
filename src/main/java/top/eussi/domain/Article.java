@@ -1,7 +1,6 @@
 package top.eussi.domain;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,7 +42,7 @@ public class Article extends BaseDomain {
 
     private Category category;
 
-    private List<Keyword> keywords = new ArrayList<Keyword>();
+    private List<Keyword> keywords;
 
     public String getId() {
         return id;

@@ -5,10 +5,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import top.eussi.constants.CommonConstants;
 import top.eussi.domain.Article;
+import top.eussi.domain.Page;
 import top.eussi.domain.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangxueming on 2018/10/13.
@@ -39,5 +43,14 @@ public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTest
         Article article = articleDao.getArticle(id);
         System.out.println(article.getContent());
         Assert.assertNotNull(article.getContent());
+    }
+
+    @Test
+    public void getPageArticle() {
+        Map<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put(CommonConstants.START_INDEX, 1);
+        hashMap.put(CommonConstants.PAGE_SIZE, 1);
+        Page page = articleDao.pagedQuery(hashMap);
+        System.out.println(page.toString());
     }
 }

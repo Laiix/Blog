@@ -44,7 +44,7 @@
         </div>
         <%--文章展示--%>
         <div id="container">
-            <c:forEach items="${articles}" var="article">
+            <c:forEach items="${page.data}" var="article">
                 <article class="article">
                     <time>${article.createTime}</time>
                     <h2 class="title"><a href="/">${article.title}</a></h2>
@@ -70,11 +70,11 @@
             <%--分页--%>
             <div class="pageforbar">
                 <ul class="pagination" >
-                    <li <c:if test="${pageInfo.pageNum==1}">class="disabled"</c:if>><a href="/?page=1">&laquo;</a></li>
-                    <c:forEach begin="1" end="${pageInfo.pages}" step="1" var="pageNo">
-                        <li <c:if test="${pageInfo.pageNum==pageNo}">class="active"</c:if>><a href="/?page=${pageNo}">${pageNo}</a></li>
+                    <li <c:if test="${page.currentPage==1}">class="disabled"</c:if>><a href="/?pageNo=1">&laquo;</a></li>
+                    <c:forEach begin="1" end="${page.totalPage}" step="1" var="no">
+                        <li <c:if test="${page.currentPage==no}">class="active"</c:if>><a href="/?pageNo=${no}">${no}</a></li>
                     </c:forEach>
-                    <li <c:if test="${pageInfo.pageNum==pageInfo.pages}">class="disabled"</c:if>><a href="/?page=${pageInfo.pages}">&raquo;</a></li>
+                    <li <c:if test="${page.currentPage==page.totalPage}">class="disabled"</c:if>><a href="/?pageNo=${page.totalPage}">&raquo;</a></li>
                 </ul>
             </div>
         </div>
