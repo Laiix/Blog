@@ -53,13 +53,13 @@
                     </div>
                 </nav>
             </header>
-            <div id="bg" style="background-image:url('/static/img/index_bg_1.jpg') ">
+            <div id="bg" style="background-image:url('/static/img/index_bg_2.jpg') ">
                 <p>
-                其实天很蓝，阴云总要散
+                  Whatever is worth doing is worth doing well.
                 </p>
                 <div id="bg-p">
                     <p>
-                        <i>一段路，走了很久</i>
+                        <i>Never say die.</i>
                     </p>
                 </div>
             </div>
