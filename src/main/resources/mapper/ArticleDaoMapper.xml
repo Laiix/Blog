@@ -58,7 +58,6 @@
     </select>
 
 
-
     <!-- 查询文章的全部信息 -->
     <resultMap id="BaseResultMap" type="Article" >
         <id column="a_id" property="id" jdbcType="VARCHAR" />
@@ -112,4 +111,45 @@
         left join t_keyword c on a.id = c.article_id
         where  a.id = #{id,jdbcType=VARCHAR}
     </select>
+
+    <update id="update" parameterType="Article" >
+        update t_article
+        <set >
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null" >
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="pic != null" >
+                pic = #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="click != null" >
+                click = #{click,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null" >
+                category_id = #{categoryId,jdbcType=TIMESTAMP},
+            </if>
+            <if test="username != null" >
+                username = #{username,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commentNum != null" >
+                comment_num = #{commentNum,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isTop != null" >
+                is_top = #{isTop,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
 </mapper>

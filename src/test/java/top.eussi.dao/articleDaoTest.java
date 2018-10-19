@@ -53,4 +53,15 @@ public class articleDaoTest extends AbstractTransactionalTestNGSpringContextTest
         Page page = articleDao.pagedQuery(hashMap);
         System.out.println(page.toString());
     }
+
+    @Test
+    public void updateArticle() {
+        Article article = new Article();
+        article.setId("1");
+        article.setTitle("我不喜欢触发");
+        articleDao.update(article);
+        article = articleDao.get("1");
+        Assert.assertEquals("我不喜欢触发", "我不喜欢触发");
+
+    }
 }

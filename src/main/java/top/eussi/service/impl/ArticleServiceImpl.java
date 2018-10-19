@@ -72,9 +72,9 @@ public class ArticleServiceImpl implements ArticleService{
         Article article = articleDao.get(id);
 
         //增加一次点击量
-//        long clickNum=article.getClick();
-//        article.setClick(clickNum+1);
-//        articleDao.update(article);
+        long clickNum=article.getClick();
+        article.setClick(clickNum+1);
+        articleDao.update(article);
 
         return article;
     }
