@@ -43,7 +43,7 @@
                         <li>
                             <a href="/">首页</a>
                             <a id="rolltoArticle" href="javascript:void(0);">文章</a>
-                            <a href="/">关于</a>
+                            <a href="/about">关于</a>
                         </li>
                     </ul>
                     <div class="loginon">
@@ -53,9 +53,9 @@
                     </div>
                 </nav>
             </header>
-            <div id="bg" style="background-image:url('/static/img/index_bg_2.jpg') ">
+            <div id="bg" style="background-image:url('/static/img/index_bg_3.jpg') ">
                 <p>
-                  Whatever is worth doing is worth doing well.
+                    在时间的大钟上，只有两个字「现在」
                 </p>
                 <div id="bg-p">
                     <p>
